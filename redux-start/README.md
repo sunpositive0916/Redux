@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Action
 
-## Available Scripts
+- 액션은 그냥 객체(object)
+- 두가지 형태의 액션
+  - {type: 'TEST'} // payload 없는 액션
+  - {type: 'TEST', params: 'hello'} // payload 있는 액션
+- type만이 필수(문자열)
 
-In the project directory, you can run:
+### Action 생성자란?
 
-### `npm start`
+- 액션을 생성하는 함수
+- 함수를 통해 액션을 생성해서 액션 객체를 리턴
+- createTest('hello'); // {type: 'TEST', params: 'hello'} 리턴
+- function 액션생성자(...args) {return 액션}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 액션이 하는 일
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. 액션 생성자를 통해 액션을 만들어냄
+2. 만들어낸 액션 객체를 리덕스 스토어에 보냄
+3. 리덕스 스토어가 액션 객체를 받으면 스토어의 생태값 변경
+4. 변경된 상태값에 의해 상태를 이용하고 있는 컴포넌트가 변경
+5. 액션은 스토어에 보내는 일종의 인풋
 
-### `npm test`
+### 액션 준비하기
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 액션의 타입을 정의하여 변수로 빼는 단계
+  - 강제는 아님
+  - 그냥 타입을 문자열로 넣기에는 실수를 유발할 가능성이 큼
+  - 미리 정의한 변수를 사용하면 스펠링에 주의를 덜 기울여도 됨
+- 액션 객체를 만들어 내는 함수를 만드는 단계
+  - 하나의 액션 객체를 만들기 위해 하나의 함수를 만듦
+  - 액션의 타입은 미리 정의한 타입 변수로부터 가져와서 사용
