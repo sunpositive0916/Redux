@@ -6,7 +6,7 @@ import { ADD_TODO } from "./actions";
 const initialState = [];
 
 
-function todoApp(previusState = initialState, action) {
+export function todoApp(previusState = initialState, action) {
     // 초기값 설정
     // initialState를 통해 초기화 시킴
     // if(previusState === undefined) {
