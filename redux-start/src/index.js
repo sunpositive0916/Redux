@@ -4,18 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
-import { addTodo } from './redux/actions';
+import { addTodo, completeTodo, showComplete } from './redux/actions';
 
-const unsubscribe = store.subscribe(() => {
+store.subscribe(() => {
   console.log(store.getState());
 });
 
 // console.log(store);
-store.dispatch(addTodo('coding'));
-store.dispatch(addTodo('read a book'));
-store.dispatch(addTodo('eat'));
-unsubscribe(); // subscribe를 제거함
-store.dispatch(addTodo('test')); // subscribe 함수가 실행 안되므로 log가 안찍힘
+store.dispatch(addTodo("할일"));
+store.dispatch(completeTodo(0));
+store.dispatch(showComplete());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
